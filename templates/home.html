@@ -1,126 +1,154 @@
-
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Django Blog</title>
-    <!-- Bootstrap 5 CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head> 
-<body>
+    <title>Django Blog</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for serif headings and Inter for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        amberButton: '#ffc107',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">My Blog</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
+    <!-- Container -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+
+        <!-- Header Section -->
+        <header class="flex justify-between items-center py-6 border-b border-gray-100">
+            <!-- Site Title -->
+            <a href="#" class="font-serif text-3xl font-bold tracking-tight text-gray-900 hover:text-gray-700 transition-colors">
+                Django Blog
+            </a>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-2">
+                <button class="bg-amberButton hover:bg-yellow-500 text-gray-900 text-sm font-medium px-4 py-1.5 rounded transition-colors shadow-sm">
+                    Login
+                </button>
+                <button class="border border-gray-300 hover:bg-gray-50 text-gray-600 text-sm font-medium px-4 py-1.5 rounded transition-colors">
+                    Register
+                </button>
             </div>
-        </div>
-    </nav>
+        </header>
 
-   <div> fsd sdf </div>
-    <!-- Main Content Container -->
-    <div class="container my-5">
-        <div class="row">
-            
-            <!-- Blog Posts Column -->
-            <div class="col-lg-8">
+        <!-- Navigation Bar -->
+        <nav class="py-4 border-b border-gray-200">
+            <ul class="flex flex-wrap justify-between items-center text-sm font-normal text-gray-500 gap-y-2">
+                <li><a href="#" class="hover:text-gray-900 transition-colors">Sports</a></li>
+                <li><a href="#" class="hover:text-gray-900 transition-colors">Politics</a></li>
+                <li><a href="#" class="hover:text-gray-900 transition-colors">Technology</a></li>
+                <li><a href="#" class="hover:text-gray-900 transition-colors">Business</a></li>
+                <li><a href="#" class="hover:text-gray-900 transition-colors">Health</a></li>
+                <li><a href="#" class="hover:text-gray-900 transition-colors">Science</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Hero / Featured Post Banner -->
+        <section class="mt-6">
+            <div class="relative rounded-lg overflow-hidden bg-gray-900 min-h-[320px] flex items-center shadow-sm">
+                <!-- Background Image (Grass with Cricket Ball matching original photo style) -->
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1600&auto=format&fit=crop" 
+                     alt="Sports Background" 
+                     class="absolute inset-0 w-full h-full object-cover object-center opacity-85"
+                     onerror="this.src='https://placehold.co/1200x400/2e5b23/ffffff?text=Sports+Background'">
                 
-                <!-- Blog Post 1 -->
-                <div class="card mb-4 shadow-sm">
-                    <img src="https://via.placeholder.com/800x400" class="card-img-top" alt="Blog Image">
-                    <div class="card-body">
-                        <div class="small text-muted mb-2">October 24, 2026 | Technology</div>
-                        <h2 class="card-title h4">First Django Blog Post Title</h2>
-                        <p class="card-text">Yeh blog post ka ek chhota sa summary ya intro paragraph hai. Django me hum content ko dynamic tarike se load kar sakte hain...</p>
-                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                    </div>
+                <!-- Dark Overlay for Readability -->
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+
+                <!-- Content -->
+                <div class="relative z-10 p-8 sm:p-12 md:p-14 max-w-2xl text-white">
+                    <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl italic font-bold tracking-tight mb-4 leading-tight">
+                        Title of a longer featured blog post
+                    </h1>
+                    <p class="text-gray-200 text-sm sm:text-base leading-relaxed mb-6 font-light">
+                        Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.
+                    </p>
+                    <a href="#" class="inline-block font-semibold text-white hover:underline text-sm sm:text-base">
+                        Continue reading...
+                    </a>
                 </div>
+            </div>
+        </section>
 
-                <!-- Blog Post 2 -->
-                <div class="card mb-4 shadow-sm">
-                    <img src="https://via.placeholder.com/800x400" class="card-img-top" alt="Blog Image">
-                    <div class="card-body">
-                        <div class="small text-muted mb-2">October 20, 2026 | Web Development</div>
-                        <h2 class="card-title h4">Mastering Python & Django</h2>
-                        <p class="card-text">Python aur Django seekhna aasan aur mazedaar hai. Is post me hum MVC architecture ke baare me baat karenge...</p>
-                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                    </div>
+        <!-- Two Featured Cards Grid -->
+        <section class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">
+                    Post Title
+                </h2>
+                <div class="text-xs text-gray-400 mb-3">
+                    Nov 11 | Author
                 </div>
-
-                <!-- Pagination -->
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
-
+                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                </p>
             </div>
 
-            <!-- Sidebar Column -->
-            <div class="col-lg-4">
-                
-                <!-- Search Widget -->
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-primary text-white fw-bold">Search</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Search blog...">
-                            <button class="btn btn-primary" type="button">Go</button>
-                        </div>
-                    </div>
+            <!-- Card 2 -->
+            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">
+                    Post Title
+                </h2>
+                <div class="text-xs text-gray-400 mb-3">
+                    Nov 11 | Author
                 </div>
-
-                <!-- Categories Widget -->
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-primary text-white fw-bold">Categories</div>
-                    <div class="card-body">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#" class="text-decoration-none text-dark">Python & Django</a></li>
-                            <li><a href="#" class="text-decoration-none text-dark">Web Design</a></li>
-                            <li><a href="#" class="text-decoration-none text-dark">Data Science</a></li>
-                            <li><a href="#" class="text-decoration-none text-dark">Tutorials</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- About Widget -->
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-primary text-white fw-bold">About Author</div>
-                    <div class="card-body">
-                        <p class="mb-0">Main ek Python & Django developer hoon. Yahan main programming aur web development ke baare me share karta hoon.</p>
-                    </div>
-                </div>
-
+                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                </p>
             </div>
+        </section>
 
+        <!-- Main Content & Sidebar Section -->
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8 pb-16">
+            <!-- Main Content Area -->
+            <main class="lg:col-span-2 border-t pt-8 border-gray-200">
+                <article class="prose max-w-none">
+                    <h2 class="font-serif text-3xl font-bold text-gray-900 mb-4 italic">
+                        Sample blog post
+                    </h2>
+                    <p class="text-gray-600 text-base leading-relaxed mb-4">
+                        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+                    </p>
+                    <p class="text-gray-600 text-base leading-relaxed">
+                        Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                    </p>
+                </article>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="lg:col-span-1 border-t pt-8 lg:border-t-0 border-gray-200">
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                    <h3 class="font-serif text-xl italic font-bold text-gray-900 mb-2">
+                        About
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed italic">
+                        Etiam porta <i>sem malesuada magna mollis</i> euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                    </p>
+                </div>
+            </aside>
         </div>
+
     </div>
 
-    <!-- Footer -->
-    <footer class="py-4 bg-dark text-white text-center">
-        <div class="container">
-            <p class="mb-0">&copy; 2026 My Django Blog. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
