@@ -17,10 +17,11 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 # BlogPost class create
 STATUS_MODE = (
-    ('Draft', 'Draft'),
-    ('Published', 'Published'),
+    (0, 'Draft'),
+    (1, 'Published'),
 )
 class BlogPost(models.Model):
     title = models.CharField(max_length = 20)
