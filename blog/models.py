@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 '''
@@ -17,17 +17,26 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-'''
-Category tho korlam. akon eita html page a kivabe add korbo manue te:
-1. views.py 
-    from .models import Category
-2. function create korte hobe category objects er value gular jonno
-    def home(request):
-        categories = Category.objects.all()
-        return render(request,'home.html',{'categories'}:categories)
+# BlogPost class create
+STATUS_MODE = (
+    ('Draft', 'Draft'),
+    ('Published', 'Published'),
+)
+class BlogPost(models.Model):
+    title = models.CharField(max_length = 20)
+    slug = models.CharField(max_length = 200,unique=True,blank =True)
+    # category delete hole auto delete
+    category = models.ForeignKey(Category,on_delete = models.CASCADE)
+    # user delete hole post delete hoye jabe
+    author = models.ForeignKey(User,on_delete = models.CASCADE)
+    short_description = models.CharField(max_length = 400)
+    blog_body = models.CharField(max_length = 2000)
+    status = models.IntegerField(choices = STATUS_MODE)
+    is_feature = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now = True)
+    updated_at = models.DateTimeField(auto_now = True)
 
-Category.objects.all() → Database থেকে সব Category নিয়ে আসবে।
-categories → পাওয়া Category-গুলো সংরক্ষণ করবে।
-render() → Data-সহ HTML Template দেখাবে।
-{'categories': categories} → Template-এ categories নামে Data পাঠাবে।
-'''
+    def __str__(self):
+        return self.title
+
+# makemigrations ->migrate
