@@ -53,12 +53,14 @@
         <!-- Navigation Bar -->
         <nav class="py-4 border-b border-gray-200">
             <ul class="flex flex-wrap justify-between items-center text-sm font-normal text-gray-500 gap-y-2">
-                <li><a href="#" class="hover:text-gray-900 transition-colors">Sports</a></li>
-                <li><a href="#" class="hover:text-gray-900 transition-colors">Politics</a></li>
+               {% for category in categories %}
+                <li><a href="#" class="hover:text-gray-900 transition-colors">{{ category.name }}</a></li>
+                {% endfor %}
+                {% comment %} <li><a href="#" class="hover:text-gray-900 transition-colors">Politics</a></li>
                 <li><a href="#" class="hover:text-gray-900 transition-colors">Technology</a></li>
                 <li><a href="#" class="hover:text-gray-900 transition-colors">Business</a></li>
                 <li><a href="#" class="hover:text-gray-900 transition-colors">Health</a></li>
-                <li><a href="#" class="hover:text-gray-900 transition-colors">Science</a></li>
+                <li><a href="#" class="hover:text-gray-900 transition-colors">Science</a></li> {% endcomment %}
             </ul>
         </nav>
 
