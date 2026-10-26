@@ -53,7 +53,7 @@
         <!-- Navigation Bar -->
         <nav class="py-4 border-b border-gray-200">
             <ul class="flex flex-wrap justify-between items-center text-sm font-normal text-gray-500 gap-y-2">
-               {% for category in categories %}
+               {% for category in post_context.categories %}
                 <li><a href="#" class="hover:text-gray-900 transition-colors">{{ category.name }}</a></li>
                 {% endfor %}
                 {% comment %} <li><a href="#" class="hover:text-gray-900 transition-colors">Politics</a></li>
@@ -78,15 +78,18 @@
 
                 <!-- Content -->
                 <div class="relative z-10 p-8 sm:p-12 md:p-14 max-w-2xl text-white">
+                    {% if  post_context.features_post %}
                     <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl italic font-bold tracking-tight mb-4 leading-tight">
-                        Title of a longer featured blog post
+                       {{post_context.features_post.title}}
                     </h1>
                     <p class="text-gray-200 text-sm sm:text-base leading-relaxed mb-6 font-light">
-                        Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.
+                        {{post_context.features_post.blog_body}}
                     </p>
-                    <a href="#" class="inline-block font-semibold text-white hover:underline text-sm sm:text-base">
-                        Continue reading...
-                    </a>
+                    {% comment %} <a href="{% url 'home' post_context.features_post.pk %}" class="inline-block font-semibold text-white hover:underline text-sm sm:text-base">
+                       continue reading..
+                    </a>  {% endcomment %}
+
+                    {% endif %}
                 </div>
             </div>
         </section>
@@ -94,30 +97,22 @@
         <!-- Two Featured Cards Grid -->
         <section class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Card 1 -->
+            {% for rect_post in  post_context.recent_posts %}
             <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">
-                    Post Title
+                    {{rect_post.title}}
                 </h2>
                 <div class="text-xs text-gray-400 mb-3">
-                    Nov 11 | Author
+                    {{rect_post.created_at}} | {{rect_post.author}}
                 </div>
                 <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    {{rect_post.short_description}}
                 </p>
             </div>
+            {% endfor %}
 
             <!-- Card 2 -->
-            <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">
-                    Post Title
-                </h2>
-                <div class="text-xs text-gray-400 mb-3">
-                    Nov 11 | Author
-                </div>
-                <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                </p>
-            </div>
+           
         </section>
 
         <!-- Main Content & Sidebar Section -->
