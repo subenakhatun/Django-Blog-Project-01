@@ -14,5 +14,5 @@ def home(request):
         'categories':categories,
         'recent_posts':recent_posts
     }
-    return render( request,'home.html', {'post_context': context} )
+    return render( request,'home.html', {'post_context': context} ) 
     
