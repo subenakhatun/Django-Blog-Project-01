@@ -12,7 +12,7 @@ def home(request):
         'features_post':features_post,
         'blog_info':blog_info,
         'categories':categories,
-        'recent_posts':recent_posts
+        'recent_posts':recent_posts 
     }
     return render( request,'home.html', {'post_context': context} ) 
     
