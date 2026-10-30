@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from .models import Category,BlogPost
 
 # Create your views here.
@@ -15,4 +16,11 @@ def home(request):
         'recent_posts':recent_posts 
     }
     return render( request,'home.html', {'post_context': context} ) 
-    
+
+def posts_by_category(request,category_id):
+    posts = BlogPost.objects.filter(status=1,category=category_id)
+    context = {
+        'posts': posts,
+    }
+    return HttpResponse(posts)
+    # return render(request, 'posts_by_category.html', context)
