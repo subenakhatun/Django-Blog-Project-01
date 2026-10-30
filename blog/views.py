@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from .models import Category,BlogPost
 
@@ -19,8 +19,11 @@ def home(request):
 
 def posts_by_category(request,category_id):
     posts = BlogPost.objects.filter(status=1,category=category_id)
+    # category = Category.objects.get(pk=category_id)
+    category = get_object_or_404(Category,pk=category_id)
     context = {
         'posts': posts,
+        'category':category,
     }
-    return HttpResponse(posts)
-    # return render(request, 'posts_by_category.html', context)
+    # return HttpResponse(posts)
+    return render(request, 'posts_by_category.html', context)

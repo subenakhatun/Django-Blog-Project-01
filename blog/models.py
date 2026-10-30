@@ -24,7 +24,7 @@ STATUS_MODE = (
     (1, 'Published'),
 )
 class BlogPost(models.Model):
-    title = models.CharField(max_length = 20)
+    title = models.CharField(max_length = 200)
     slug = models.CharField(max_length = 200,unique=True,blank =True)
     # category delete hole auto delete
     category = models.ForeignKey(Category,on_delete = models.CASCADE)
