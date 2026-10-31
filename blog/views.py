@@ -15,7 +15,7 @@ def home(request):
         'categories':categories,
         'recent_posts':recent_posts 
     }
-    return render( request,'home.html', {'post_context': context} ) 
+    return render( request,'home.html',  context  ) 
 
 def posts_by_category(request,category_id):
     posts = BlogPost.objects.filter(status=1,category=category_id)
@@ -27,3 +27,6 @@ def posts_by_category(request,category_id):
     }
     # return HttpResponse(posts)
     return render(request, 'posts_by_category.html', context)
+
+def blogs(request):
+    return render(request,'blogs.html')

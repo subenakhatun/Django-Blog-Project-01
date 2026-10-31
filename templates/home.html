@@ -1,69 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Blog</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Playfair Display for serif headings and Inter for body text -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        amberButton: '#ffc107',
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-white text-gray-800 font-sans antialiased min-h-screen flex flex-col">
-
-    <!-- Container -->
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-
-        <!-- Header Section -->
-        <header class="flex justify-between items-center py-6 border-b border-gray-100">
-            <!-- Site Title -->
-            <a href="#" class="font-serif text-3xl font-bold tracking-tight text-gray-900 hover:text-gray-700 transition-colors">
-                Django Blog
-            </a>
-
-            <!-- Action Buttons -->
-            <div class="flex items-center space-x-2">
-                <button class="bg-amberButton hover:bg-yellow-500 text-gray-900 text-sm font-medium px-4 py-1.5 rounded transition-colors shadow-sm">
-                    Login
-                </button>
-                <button class="border border-gray-300 hover:bg-gray-50 text-gray-600 text-sm font-medium px-4 py-1.5 rounded transition-colors">
-                    Register
-                </button>
-            </div>
-        </header>
-
-        <!-- Navigation Bar -->
-        <nav class="py-4 border-b border-gray-200">
-            <ul class="flex flex-wrap justify-between items-center text-sm font-normal text-gray-500 gap-y-2">
-               {% for category in post_context.categories %}
-                <li><a href="#" class="hover:text-gray-900 transition-colors">{{ category.name }}</a></li>
-                {% endfor %}
-                {% comment %} <li><a href="#" class="hover:text-gray-900 transition-colors">Politics</a></li>
-                <li><a href="#" class="hover:text-gray-900 transition-colors">Technology</a></li>
-                <li><a href="#" class="hover:text-gray-900 transition-colors">Business</a></li>
-                <li><a href="#" class="hover:text-gray-900 transition-colors">Health</a></li>
-                <li><a href="#" class="hover:text-gray-900 transition-colors">Science</a></li> {% endcomment %}
-            </ul>
-        </nav>
-
+{% extends 'base.html' %}
+    {% block content %}
         <!-- Main Hero / Featured Post Banner -->
         <section class="mt-6">
             <div class="relative rounded-lg overflow-hidden bg-gray-900 min-h-[320px] flex items-center shadow-sm">
@@ -78,12 +14,12 @@
 
                 <!-- Content -->
                 <div class="relative z-10 p-8 sm:p-12 md:p-14 max-w-2xl text-white">
-                    {% if  post_context.features_post %}
+                    {% if  features_post %}
                     <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl italic font-bold tracking-tight mb-4 leading-tight">
-                       {{post_context.features_post.title}}
+                       {{features_post.title}}
                     </h1>
                     <p class="text-gray-200 text-sm sm:text-base leading-relaxed mb-6 font-light">
-                        {{post_context.features_post.blog_body}}
+                        {{features_post.blog_body}}
                     </p>
                     {% comment %} <a href="{% url 'home' post_context.features_post.pk %}" class="inline-block font-semibold text-white hover:underline text-sm sm:text-base">
                        continue reading..
@@ -97,7 +33,7 @@
         <!-- Two Featured Cards Grid -->
         <section class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Card 1 -->
-            {% for rect_post in  post_context.recent_posts %}
+            {% for rect_post in   recent_posts %}
             <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                 <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">
                     {{rect_post.title}}
@@ -147,5 +83,4 @@
 
     </div>
 
-</body>
-</html>
+    {% endblock %}
