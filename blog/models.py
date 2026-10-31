@@ -31,7 +31,7 @@ class BlogPost(models.Model):
     # user delete hole post delete hoye jabe
     author = models.ForeignKey(User,on_delete = models.CASCADE)
     short_description = models.CharField(max_length = 400)
-    featured_image = models.ImageField(upload_to='uploads/%Y/%m/%d')
+    featured_image = models.ImageField(upload_to='posts/', blank=True, null=True)
     blog_body = models.CharField(max_length = 2000)
     status = models.IntegerField(choices = STATUS_MODE)
     is_feature = models.BooleanField(default=False)
